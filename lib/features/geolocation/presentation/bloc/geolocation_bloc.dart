@@ -4,7 +4,7 @@ import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_current_location.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_location_by_city.dart';
-import 'package:weather_app2/features/geolocation/domain/usecases/usecase.dart';
+import 'package:weather_app2/core/usecases/usecase.dart';
 
 part 'geolocation_event.dart';
 part 'geolocation_state.dart';
