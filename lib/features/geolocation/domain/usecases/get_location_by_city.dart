@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/domain/repo/geolocation_repo.dart';
-import 'package:weather_app2/features/geolocation/domain/usecases/usecase.dart';
+import 'package:weather_app2/core/usecases/usecase.dart';
 
 class GetLocationByCity implements Usecase<GeolocationEntity, String> {
   final GeolocationRepo geolocationRepo;
