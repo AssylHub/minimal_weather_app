@@ -12,7 +12,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   WeatherBloc({required this.getWeatherByCord}) : super(WeatherInitial()) {
     on<WeatherEvent>((event, emit) {});
-    on<FetchWeatherByCordEvent>((event, emit) {});
+    on<FetchWeatherByCordEvent>(_onFetchWeatherByCord);
   }
 
   Future<void> _onFetchWeatherByCord(

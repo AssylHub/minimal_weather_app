@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
+import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.lat, required this.lon});
+
+  final double lat;
+  final double lon;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,12 +19,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   bool isVisible = false;
   late TabController tabController;
 
-  List<Widget> screens = [
-    Center(child: Text("Weather Page")),
-    Center(child: Text("Forecast Page")),
-    Center(child: Text("Weather Page")),
-    Center(child: Text("Forecast Page")),
-  ];
+  List<Widget> screens = [];
 
   @override
   void initState() {
@@ -36,6 +35,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void setupTabController() {
+    screens = [
+      WeatherScreen(lat: widget.lat, lon: widget.lon),
+      Center(child: Text("Forecast Page")),
+      Center(child: Text("Weather Page")),
+      Center(child: Text("Forecast Page")),
+    ];
     tabController = TabController(
       initialIndex: tabIndex,
       length: screens.length,
