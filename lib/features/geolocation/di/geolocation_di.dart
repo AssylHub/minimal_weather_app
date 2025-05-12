@@ -11,10 +11,7 @@ import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_
 
 final sl = GetIt.instance;
 
-Future<void> init() async {
-  // External
-  sl.registerLazySingleton(() => http.Client());
-
+Future<void> initGeolocation() async {
   // Datasources
   sl.registerLazySingleton<GeolocationDataSource>(
     () => GeolocationDataSourceImpl(client: http.Client()),

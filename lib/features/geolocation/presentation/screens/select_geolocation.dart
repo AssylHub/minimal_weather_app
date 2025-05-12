@@ -9,6 +9,8 @@ import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_current_location.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_location_by_city.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
+import 'package:weather_app2/features/home/presentation/screens/home_screen.dart';
+import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class SelectGeolocation extends StatefulWidget {
   const SelectGeolocation({super.key, required this.isStart});
@@ -29,9 +31,15 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
   final TextEditingController districtController = TextEditingController();
   final mapController = MapController();
 
+  late double lat;
+  late double lon;
+
   void submitForm() {
     if (formKey.currentState!.validate()) {
-      print("sjff");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen(lat: lat, lon: lon)),
+      );
     }
   }
 
@@ -58,6 +66,9 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
             longController.text = state.location.longitude.toString();
             cityController.text = state.location.city;
             districtController.text = state.location.district;
+
+            lat = state.location.latitude;
+            lon = state.location.longitude;
           }
         },
         builder: (blocContext, state) {
@@ -121,22 +132,11 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           ),
                           children: [
                             TileLayer(
-                              // Bring your own tiles
                               urlTemplate:
                                   'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // For demonstration only
                               userAgentPackageName:
                                   'com.example.weather_app2', // Add your app identifier
-                              // And many more recommended properties!
                             ),
-                            // RichAttributionWidget( // Include a stylish prebuilt attribution widget that meets all requirments
-                            //   attributions: [
-                            //     TextSourceAttribution(
-                            //       'OpenStreetMap contributors',
-                            //       onTap: () => launchUrl(Uri.parse('https://openstreetmap.org/copyright')), // (external)
-                            //     ),
-                            //     // Also add images...
-                            //   ],
-                            // ),
                           ],
                         ),
                       ),
@@ -212,7 +212,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                             return "Enter a value.";
                           }
 
-                          return "";
+                          return null;
                         },
                       ),
                       TextFormField(
@@ -233,7 +233,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                             return "Enter a value.";
                           }
 
-                          return "";
+                          return null;
                         },
                       ),
                       TextFormField(
@@ -254,7 +254,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                             return "Enter a value.";
                           }
 
-                          return "";
+                          return null;
                         },
                       ),
                       TextFormField(

@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:weather_app2/features/di_injection.dart';
 import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
-import 'package:weather_app2/features/home/presentation/screens/home_screen.dart';
+import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
+import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
+import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  init();
-  runApp(const MyApp());
+  await dotenv.load();
+  await init();
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) => GeolocationBloc(
+                getCurrentLocation: sl(),
+                getLocationByCity: sl(),
+              ),
+        ),
+
+        BlocProvider(create: (context) => WeatherBloc(getWeatherByCord: sl())),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,6 +34,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomeScreen());
+    return MaterialApp(home: SelectGeolocation(isStart: false));
   }
 }
