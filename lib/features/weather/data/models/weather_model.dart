@@ -52,14 +52,17 @@ class Weather extends Equatable {
 
   factory Weather.fromMap(Map<String, dynamic> map) {
     return Weather(
-      cityName: map['cityName'] as String,
-      temperature: map['temperature'] as double,
-      description: map['description'] as String,
-      humidity: map['humidity'] as int,
-      windSpeed: map['windSpeed'] as double,
+      cityName:
+          map['name'] as String, // 'name' is the city name in the response
+      description:
+          map['weather'][0]['description']
+              as String, // First weather description
+      humidity: map['main']['humidity'] as int, // 'humidity' is under 'main'
+      temperature: (map['main']['temp'] as num).toDouble(),
+      windSpeed:
+          (map['wind']['speed'] as num).toDouble(), // 'speed' is under 'wind'
     );
   }
-
   String toJson() => json.encode(toMap());
 
   factory Weather.fromJson(String source) =>

@@ -14,15 +14,18 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   @override
   Future<Weather> getWeatherByCord(double lat, double lon) async {
     final url = Uri.parse(
-      "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric",
+      "https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=$apiKey&units=metric",
     );
 
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      return Weather.fromJson(jsonDecode(response.body));
+      return Weather.fromMap(jsonDecode(response.body));
     } else {
-      throw Exception("Failed to fetch weather.");
+      print(
+        "Failed to fetch weather. ${response.statusCode} ${response.body} ",
+      );
+      throw Exception("Failed to fetch weather. ");
     }
   }
 }
