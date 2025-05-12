@@ -4,6 +4,7 @@ import 'package:weather_app2/core/constants/app_constants.dart';
 import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource.dart';
 import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource_impl.dart';
 import 'package:weather_app2/features/weather/data/repositories/weather_repo_impl.dart';
+import 'package:weather_app2/features/weather/data/services/day_now_service.dart';
 import 'package:weather_app2/features/weather/domain/repositories/weather_repo.dart';
 import 'package:weather_app2/features/weather/domain/usecases/get_weather_by_cord.dart';
 import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
@@ -11,6 +12,9 @@ import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dar
 final sl = GetIt.instance;
 
 Future<void> initWeather() async {
+  // services
+  sl.registerLazySingleton<DayNowService>(() => DayNowService());
+
   // Datasource
   sl.registerLazySingleton<WeatherRemoteDatasource>(
     () => WeatherRemoteDatasourceImpl(

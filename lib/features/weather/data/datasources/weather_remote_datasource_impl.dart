@@ -19,6 +19,8 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
 
     final response = await client.get(url);
 
+    print(url);
+
     if (response.statusCode == 200) {
       return Weather.fromMap(jsonDecode(response.body));
     } else {

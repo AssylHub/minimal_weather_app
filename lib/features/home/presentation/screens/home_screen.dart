@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
+import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     // TODO: implement initState
     super.initState();
     setupTabController();
+    context.read<WeatherBloc>().add(
+      FetchWeatherByCordEvent(widget.lat, widget.lon),
+    );
   }
 
   @override
@@ -86,7 +91,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           int() => null,
         },
         title: switch (tabIndex) {
-          0 => isVisible ? TextField() : Text("Taraz"),
+          0 =>
+            isVisible
+                ? TextField()
+                : BlocConsumer<WeatherBloc, WeatherState>(
+                  listener: (context, state) {
+                    if (state is WeatherLoaded) {
+                      print("${state.weatherData}");
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is WeatherLoading) {
+                      return Text("Loading...");
+                    }
+                    if (state is WeatherLoaded) {
+                      return Text(state.weatherData.cityName);
+                    }
+                    return Text("Error.");
+                  },
+                ),
           int() => null,
         },
         actions: switch (tabIndex) {

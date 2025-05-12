@@ -5,12 +5,16 @@ import 'package:weather_app2/features/di_injection.dart';
 import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
+import 'package:weather_app2/features/weather/data/services/day_now_service.dart';
 import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
   await init();
+
+  print(DayNowService().getCurrentDay());
+
   runApp(
     MultiBlocProvider(
       providers: [
