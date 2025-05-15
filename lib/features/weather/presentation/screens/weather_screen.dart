@@ -23,7 +23,10 @@ class WeatherScreen extends StatelessWidget {
         if (state is WeatherLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is WeatherLoaded) {
-          return WeatherDisplay(weather: state.weatherData);
+          return WeatherDisplay(
+            weather: state.weatherData,
+            currentWeather: state.currentWeather,
+          );
         } else if (state is WeatherError) {
           return Center(child: Text(state.message));
         } else {
