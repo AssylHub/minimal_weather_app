@@ -40,7 +40,7 @@ class GeolocationDataSourceImpl implements GeolocationDataSource {
   @override
   Future<Geolocation> getLocationByCity(String cityName) async {
     final url = Uri.parse(
-      "https://nominatim.openstreetmap.org/search?q=$cityName&format=json&limit=1",
+      "https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=5&language=en&format=json",
     );
 
     final response = await client.get(
@@ -52,19 +52,21 @@ class GeolocationDataSourceImpl implements GeolocationDataSource {
       throw Exception("Failed to fetch location for city.");
     }
 
-    final List<dynamic> data = jsonDecode(response.body);
+    final Map<String, dynamic> json = jsonDecode(response.body);
 
-    if (data.isEmpty) {
+    final List<dynamic> results = json['results'] ?? [];
+
+    if (results.isEmpty) {
       throw Exception("No result found");
     }
 
-    final firstResult = data[0];
+    final firstResult = results[0];
 
     return Geolocation(
-      latitude: double.parse(firstResult["lat"]),
-      longitude: double.parse(firstResult["lon"]),
+      latitude: firstResult["latitude"],
+      longitude: firstResult["longitude"],
       city: cityName,
-      district: firstResult['display_name'] ?? 'Unknown District',
+      district: firstResult['admin1'] ?? 'Unknown District',
     );
   }
 }
