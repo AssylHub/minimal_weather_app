@@ -1,6 +1,6 @@
 // import 'package:timezone/timezone.dart';
 
-// class StatusData {
+class StatusData {
 //   String getDegree(degree) {
 //     switch (settings.degrees) {
 //       case 'celsius':
@@ -57,22 +57,16 @@
 //     }
 //   }
 
-//   String getTimeFormat(String time) {
-//     switch (settings.timeformat) {
-//       case '12':
-//         return DateFormat.jm(
-//           locale.languageCode,
-//         ).format(DateTime.tryParse(time)!);
-//       case '24':
-//         return DateFormat.Hm(
-//           locale.languageCode,
-//         ).format(DateTime.tryParse(time)!);
-//       default:
-//         return DateFormat.Hm(
-//           locale.languageCode,
-//         ).format(DateTime.tryParse(time)!);
-//     }
-//   }
+  // String getTimeFormat(String time) {
+  //   switch (time.length.toString()) {
+  //     case '12':
+  //       return DateTime.parse(time);
+  //     case '24':
+        
+  //     default:
+        
+  //   }
+  // }
 
 //   String getTimeFormatTz(TZDateTime time) {
 //     switch (settings.timeformat) {
@@ -84,4 +78,4 @@
 //         return DateFormat.Hm(locale.languageCode).format(time);
 //     }
 //   }
-// }
+}
