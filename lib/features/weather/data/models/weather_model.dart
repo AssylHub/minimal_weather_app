@@ -5,49 +5,147 @@ import 'package:equatable/equatable.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
 
 class Weather extends Equatable {
-  final String cityName;
-  final double temperature;
-  final String description;
-  final double feelsLike;
-  final double tempMin;
-  final double tempMax;
-  // final int humidity;
-  // final double windSpeed;
+  final List<String> timeDaily;
+  final List<int> weatherCodesDaily;
+  final List<double> maxTemps;
+  final List<double> minTemps;
+  final List<String> sunriseList;
+  final List<String> sunsetList;
+  final List<String> time;
+  final List<int> weatherCodes;
+  final List<double> temperatures;
+  final List<double> feelsLikeTemps;
+  final List<double> dewpoints;
+  final List<int> visibility;
+  final List<int> direction;
+  final List<double> windSpeed;
+  final List<double> windGust;
+  final List<double> evapotranspiration;
+  final List<double> precipitation;
+  final List<double> rain;
+  final List<int> precipitationProbability;
+  final List<int> humidity;
+  final List<int> cloudCover;
+  final List<double> surfacePressure;
+  final List<double> uvIndex;
+  final List<double> radiation;
 
-  Weather({
-    required this.cityName,
-    required this.temperature,
-    required this.description,
-    required this.feelsLike,
-    required this.tempMin,
-    required this.tempMax,
-    // required this.humidity,
-    // required this.windSpeed,
+  const Weather({
+    required this.timeDaily,
+    required this.weatherCodesDaily,
+    required this.time,
+    required this.weatherCodes,
+    required this.temperatures,
+    required this.feelsLikeTemps,
+    required this.minTemps,
+    required this.maxTemps,
+    required this.sunriseList,
+    required this.sunsetList,
+    required this.dewpoints,
+    required this.visibility,
+    required this.direction,
+    required this.windSpeed,
+    required this.windGust,
+    required this.evapotranspiration,
+    required this.precipitation,
+    required this.rain,
+    required this.precipitationProbability,
+    required this.humidity,
+    required this.cloudCover,
+    required this.surfacePressure,
+    required this.uvIndex,
+    required this.radiation,
   });
 
   @override
   List<Object> get props {
     return [
-      cityName, temperature, description, feelsLike,
-
-      //  humidity, windSpeed,
+      timeDaily,
+      weatherCodesDaily,
+      time,
+      weatherCodes,
+      temperatures,
+      feelsLikeTemps,
+      minTemps,
+      maxTemps,
+      sunriseList,
+      sunsetList,
+      dewpoints,
+      visibility,
+      direction,
+      windSpeed,
+      windGust,
+      evapotranspiration,
+      precipitation,
+      rain,
+      precipitationProbability,
+      humidity,
+      cloudCover,
+      surfacePressure,
+      uvIndex,
+      radiation,
     ];
   }
 
   factory Weather.fromMap(Map<String, dynamic> map) {
+    final hourly = map['hourly'];
+    final daily = map['daily'];
+    // final utcOffset = map['utc_offset_seconds'] ~/ 3600;
+
     return Weather(
-      cityName:
-          map['name'] as String, // 'name' is the city name in the response
-      description:
-          map['weather'][0]['description']
-              as String, // First weather description
-      // humidity: map['main']['humidity'] as int, // 'humidity' is under 'main'
-      temperature: (map['main']['temp'] as num).toDouble(),
-      feelsLike: (map["main"]["feels_like"] as num).toDouble(),
-      tempMin: (map['main']['temp_min'] as num).toDouble(),
-      tempMax: (map["main"]["temp_max"] as num).toDouble(),
-      // windSpeed:
-      //     (map['wind']['speed'] as num).toDouble(), // 'speed' is under 'wind'
+      timeDaily: List<String>.from(daily['time']),
+      weatherCodesDaily: List<int>.from(daily['weathercode']),
+      minTemps: List<double>.from(
+        daily['temperature_2m_min'].map((e) => e.toDouble()),
+      ),
+      maxTemps: List<double>.from(
+        daily['temperature_2m_max'].map((e) => e.toDouble()),
+      ),
+
+      sunriseList: List<String>.from(daily['sunrise']),
+      sunsetList: List<String>.from(daily['sunset']),
+      time: List<String>.from(hourly['time']),
+      weatherCodes: List<int>.from(hourly['weathercode']),
+      temperatures: List<double>.from(
+        hourly['temperature_2m'].map((e) => (e as num).toDouble()),
+      ),
+      feelsLikeTemps: List<double>.from(
+        hourly['apparent_temperature'].map((e) => (e as num).toDouble()),
+      ),
+      dewpoints: List<double>.from(
+        hourly["dewpoint_2m"].map((e) => e.toDouble()),
+      ),
+      visibility: List<int>.from(hourly["visibility"].map((e) => e.toInt())),
+      direction: List<int>.from(
+        hourly["winddirection_10m"].map((e) => e.toInt()),
+      ),
+      windSpeed: List<double>.from(
+        hourly["windspeed_10m"].map((e) => e.toDouble()),
+      ),
+      windGust: List<double>.from(
+        hourly["windgusts_10m"].map((e) => e.toDouble()),
+      ),
+      evapotranspiration: List<double>.from(
+        hourly["evapotranspiration"].map((e) => e.toDouble()),
+      ),
+      precipitation: List<double>.from(
+        hourly["precipitation"].map((e) => e.toDouble()),
+      ),
+      rain: List<double>.from(hourly["rain"].map((e) => e.toDouble())),
+      precipitationProbability: List<int>.from(
+        hourly["precipitation_probability"].map((e) => e.toInt()),
+      ),
+      humidity: List<int>.from(
+        hourly["relativehumidity_2m"].map((e) => e.toInt()),
+      ),
+      cloudCover: List<int>.from(hourly["cloudcover"].map((e) => e.toInt())),
+      surfacePressure: List<double>.from(
+        hourly["surface_pressure"].map((e) => e.toDouble()),
+      ),
+      uvIndex: List<double>.from(hourly["uv_index"].map((e) => e.toDouble())),
+      radiation: List<double>.from(
+        hourly["shortwave_radiation"].map((e) => e.toDouble()),
+      ),
     );
   }
 
@@ -55,25 +153,57 @@ class Weather extends Equatable {
       Weather.fromMap(json.decode(source) as Map<String, dynamic>);
 
   WeatherEntity toEntity() => WeatherEntity(
-    cityName: cityName,
-    temperature: temperature,
-    description: description,
-    feelsLike: feelsLike,
-    tempMin: tempMin,
-    tempMax: tempMax,
-    // humidity: humidity,
-    // windSpeed: windSpeed,
+    timeDaily: timeDaily,
+    weatherCodesDaily: weatherCodesDaily,
+    time: time,
+    temperatures: temperatures,
+    feelsLikeTemps: feelsLikeTemps,
+    weatherCodes: weatherCodes,
+    maxTemps: maxTemps,
+    minTemps: minTemps,
+    sunriseList: sunriseList,
+    sunsetList: sunsetList,
+    dewpoints: dewpoints,
+    visibility: visibility,
+    direction: direction,
+    windSpeed: windSpeed,
+    windGust: windGust,
+    evapotranspiration: evapotranspiration,
+    precipitation: precipitation,
+    rain: rain,
+    precipitationProbability: precipitationProbability,
+    humidity: humidity,
+    cloudCover: cloudCover,
+    surfacePressure: surfacePressure,
+    uvIndex: uvIndex,
+    radiation: radiation,
   );
 
   factory Weather.fromEntity(WeatherEntity weatherEntity) => Weather(
-    cityName: weatherEntity.cityName,
-    temperature: weatherEntity.temperature,
-    description: weatherEntity.description,
-    feelsLike: weatherEntity.feelsLike,
-    tempMin: weatherEntity.tempMin,
-    tempMax: weatherEntity.tempMax,
-    // humidity: weatherEntity.humidity,
-    // windSpeed: weatherEntity.windSpeed,
+    timeDaily: weatherEntity.timeDaily,
+    weatherCodesDaily: weatherEntity.weatherCodesDaily,
+    time: weatherEntity.time,
+    temperatures: weatherEntity.temperatures,
+    feelsLikeTemps: weatherEntity.feelsLikeTemps,
+    weatherCodes: weatherEntity.weatherCodes,
+    minTemps: weatherEntity.minTemps,
+    maxTemps: weatherEntity.maxTemps,
+    sunriseList: weatherEntity.sunriseList,
+    sunsetList: weatherEntity.sunsetList,
+    dewpoints: weatherEntity.dewpoints,
+    visibility: weatherEntity.visibility,
+    direction: weatherEntity.direction,
+    windSpeed: weatherEntity.windSpeed,
+    windGust: weatherEntity.windGust,
+    evapotranspiration: weatherEntity.evapotranspiration,
+    precipitation: weatherEntity.precipitation,
+    rain: weatherEntity.rain,
+    precipitationProbability: weatherEntity.precipitationProbability,
+    humidity: weatherEntity.humidity,
+    cloudCover: weatherEntity.cloudCover,
+    surfacePressure: weatherEntity.surfacePressure,
+    uvIndex: weatherEntity.uvIndex,
+    radiation: weatherEntity.radiation,
   );
 
   @override
