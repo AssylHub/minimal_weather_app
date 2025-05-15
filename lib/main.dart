@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_app2/features/di_injection.dart';
-import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
+import 'package:weather_app2/app/router.dart';
+import 'package:weather_app2/core/di/injector.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
-import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
 import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
 
 void main() async {
@@ -39,6 +38,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: SelectGeolocation(isStart: false));
+    return MaterialApp.router(routerConfig: appRouter);
   }
 }

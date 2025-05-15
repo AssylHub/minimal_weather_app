@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:weather_app2/core/di/injector.dart';
 import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_current_location.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_location_by_city.dart';

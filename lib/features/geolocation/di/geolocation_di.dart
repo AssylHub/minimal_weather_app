@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:weather_app2/core/di/injector.dart';
 
-import 'package:http/http.dart' as http;
 import 'package:weather_app2/features/geolocation/data/datasources/geolocation_data_source.dart';
 import 'package:weather_app2/features/geolocation/data/datasources/geolocation_data_source_impl.dart';
 import 'package:weather_app2/features/geolocation/data/repo/geolocation_repo_impl.dart';
@@ -9,12 +9,10 @@ import 'package:weather_app2/features/geolocation/domain/usecases/get_current_lo
 import 'package:weather_app2/features/geolocation/domain/usecases/get_location_by_city.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 
-final sl = GetIt.instance;
-
 Future<void> initGeolocation() async {
   // Datasources
   sl.registerLazySingleton<GeolocationDataSource>(
-    () => GeolocationDataSourceImpl(client: http.Client()),
+    () => GeolocationDataSourceImpl(client: sl()),
   );
 
   // Repo
