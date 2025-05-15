@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
+import 'package:weather_app2/features/map/presentation/screens/map_screen.dart';
 import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
 import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.lat, required this.lon});
+  const HomeScreen({
+    super.key,
+    required this.lat,
+    required this.lon,
+    required this.cityName,
+    required this.district,
+  });
 
   final double lat;
   final double lon;
+  final String cityName;
+  final String district;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,16 +32,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int tabIndex = 0;
   bool isVisible = false;
   late TabController tabController;
+  final TextEditingController searchController = TextEditingController();
 
   List<Widget> screens = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setupTabController();
     context.read<WeatherBloc>().add(
-      FetchWeatherByCordEvent(widget.lat, widget.lon),
+      FetchWeatherByCordEvent(
+        widget.lat,
+        widget.lon,
+        widget.cityName,
+        widget.district,
+      ),
     );
   }
 
@@ -43,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     screens = [
       WeatherScreen(lat: widget.lat, lon: widget.lon),
       Center(child: Text("Forecast Page")),
-      Center(child: Text("Weather Page")),
+      MapScreen(lat: widget.lat, lon: widget.lon),
       Center(child: Text("Forecast Page")),
     ];
     tabController = TabController(
@@ -93,23 +110,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         title: switch (tabIndex) {
           0 =>
             isVisible
-                ? TextField()
-                : BlocConsumer<WeatherBloc, WeatherState>(
-                  listener: (context, state) {
-                    if (state is WeatherLoaded) {
-                      print("${state.weatherData}");
-                    }
+                ? TextField(
+                  controller: searchController,
+                  onSubmitted: (value) {
+                    context.read<GeolocationBloc>().add(
+                      GetLocationByCityEvent(searchController.text),
+                    );
                   },
-                  builder: (context, state) {
-                    if (state is WeatherLoading) {
-                      return Text("Loading...");
-                    }
-                    if (state is WeatherLoaded) {
-                      return Text(state.weatherData.cityName);
-                    }
-                    return Text("Error.");
-                  },
-                ),
+                )
+                : Text("${widget.cityName} ${widget.district}", maxLines: 2),
           int() => null,
         },
         actions: switch (tabIndex) {

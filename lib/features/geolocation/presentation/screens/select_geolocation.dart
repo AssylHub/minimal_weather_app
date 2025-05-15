@@ -31,14 +31,19 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
   final TextEditingController districtController = TextEditingController();
   final mapController = MapController();
 
-  late double lat;
-  late double lon;
-
   void submitForm() {
     if (formKey.currentState!.validate()) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen(lat: lat, lon: lon)),
+        MaterialPageRoute(
+          builder:
+              (context) => HomeScreen(
+                lat: double.parse(latController.text.trim()),
+                lon: double.parse(longController.text.trim()),
+                cityName: cityController.text.trim(),
+                district: districtController.text.trim(),
+              ),
+        ),
       );
     }
   }
@@ -66,9 +71,6 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
             longController.text = state.location.longitude.toString();
             cityController.text = state.location.city;
             districtController.text = state.location.district;
-
-            lat = state.location.latitude;
-            lon = state.location.longitude;
           }
         },
         builder: (blocContext, state) {
