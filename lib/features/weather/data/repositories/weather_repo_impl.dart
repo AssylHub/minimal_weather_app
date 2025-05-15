@@ -14,9 +14,16 @@ class WeatherRepoImpl implements WeatherRepo {
   Future<Either<Failure, WeatherEntity>> getWeatherByCord(
     double lat,
     double lon,
+    String cityName,
+    String district,
   ) async {
     try {
-      final weather = await remoteDatasource.getWeatherByCord(lat, lon);
+      final weather = await remoteDatasource.getWeatherByCord(
+        lat,
+        lon,
+        cityName,
+        district,
+      );
 
       return Right(weather.toEntity());
     } catch (e) {

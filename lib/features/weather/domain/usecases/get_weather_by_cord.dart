@@ -8,7 +8,12 @@ class GetWeatherByCord {
 
   GetWeatherByCord(this.repo);
 
-  Future<Either<Failure, WeatherEntity>> call(double lat, double lon) {
-    return repo.getWeatherByCord(lat, lon);
+  Future<Either<Failure, WeatherEntity>> call(
+    double lat,
+    double lon,
+    String cityName,
+    String district,
+  ) {
+    return repo.getWeatherByCord(lat, lon, cityName, district);
   }
 }

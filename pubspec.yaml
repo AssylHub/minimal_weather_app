@@ -50,6 +50,9 @@ dependencies:
   dotenv: ^4.2.0
   flutter_dotenv: ^5.2.1
   intl: ^0.20.2
+  get: ^4.7.2
+  flutter_speed_dial: ^7.0.0
+  flutter_expandable_fab: ^2.5.1
 
 dev_dependencies:
   flutter_test:

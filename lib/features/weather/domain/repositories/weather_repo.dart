@@ -6,5 +6,7 @@ abstract class WeatherRepo {
   Future<Either<Failure, WeatherEntity>> getWeatherByCord(
     double lat,
     double lon,
+    String cityName,
+    String district,
   );
 }
