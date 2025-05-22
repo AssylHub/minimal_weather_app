@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
@@ -7,23 +6,19 @@ import 'package:weather_app2/core/utils/location_helper.dart';
 import 'package:weather_app2/features/geolocation/data/datasources/geolocation_data_source.dart';
 import 'package:weather_app2/features/geolocation/data/models/geolocation.dart';
 
-import 'package:http/http.dart' as http;
-
 @LazySingleton(as: GeolocationDataSource)
 class GeolocationDataSourceImpl implements GeolocationDataSource {
-  final http.Client client;
+  final Dio dio;
 
-  GeolocationDataSourceImpl({required this.client});
+  GeolocationDataSourceImpl({required this.dio});
   @override
   Future<Geolocation> getCurrentLocation() async {
     await PermissionsUtil.ensureLocationPermission();
 
-    // Step 1: Get position
     final position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
 
-    // Step 2: Reverse geocode the position to get city & district
     final placemarks = await placemarkFromCoordinates(
       position.latitude,
       position.longitude,
@@ -41,34 +36,30 @@ class GeolocationDataSourceImpl implements GeolocationDataSource {
 
   @override
   Future<Geolocation> getLocationByCity(String cityName) async {
-    final url = Uri.parse(
-      "https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=5&language=en&format=json",
-    );
+    final url =
+        "https://geocoding-api.open-meteo.com/v1/search?name=$cityName&count=5&language=en&format=json";
 
-    final response = await client.get(
-      url,
-      headers: {"User-Agent": "weather_app2"},
-    );
+    try {
+      final response = await dio.get(url);
 
-    if (response.statusCode != 200) {
-      throw Exception("Failed to fetch location for city.");
+      final data = response.data;
+
+      final List<dynamic> results = data['results'] ?? [];
+
+      if (results.isEmpty) {
+        throw Exception("No result found");
+      }
+
+      final firstResult = results[0];
+
+      return Geolocation(
+        latitude: firstResult["latitude"],
+        longitude: firstResult["longitude"],
+        city: cityName,
+        district: firstResult['admin1'] ?? 'Unknown District',
+      );
+    } catch (e) {
+      throw Exception("Failed to fetch location for city: $e");
     }
-
-    final Map<String, dynamic> json = jsonDecode(response.body);
-
-    final List<dynamic> results = json['results'] ?? [];
-
-    if (results.isEmpty) {
-      throw Exception("No result found");
-    }
-
-    final firstResult = results[0];
-
-    return Geolocation(
-      latitude: firstResult["latitude"],
-      longitude: firstResult["longitude"],
-      city: cityName,
-      district: firstResult['admin1'] ?? 'Unknown District',
-    );
   }
 }
