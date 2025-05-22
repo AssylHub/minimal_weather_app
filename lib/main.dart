@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weather_app2/core/router/router.dart';
-import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
-import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
-import 'core/service/injectable/injectable_service.dart';
+import 'package:weather_app2/src/core/router/router.dart';
+import 'package:weather_app2/src/features/geolocation/presentation/bloc/geolocation_bloc.dart';
+import 'package:weather_app2/src/features/weather/presentation/bloc/weather_bloc.dart';
+import 'src/core/service/injectable/injectable_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
