@@ -6,6 +6,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:weather_app2/src/app/presentation/screens/talker_log_screen.dart';
 import 'package:weather_app2/src/core/router/router.dart';
 import 'package:weather_app2/src/core/service/injectable/injectable_service.dart';
 import 'package:weather_app2/src/features/geolocation/domain/entities/geolocation_entity.dart';
@@ -282,6 +283,17 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           foregroundColor: Colors.black,
                           minimumSize: Size(double.infinity, 50),
                         ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const TalkerLogScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text("View Logs"),
                       ),
                     ],
                   ),

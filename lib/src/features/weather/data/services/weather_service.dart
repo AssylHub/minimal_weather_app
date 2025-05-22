@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app2/src/core/utils/loggers/log.dart';
 import 'package:weather_app2/src/core/utils/status_weather.dart';
 import 'package:weather_app2/src/features/weather/domain/entities/current_weather.dart';
 import 'package:weather_app2/src/features/weather/domain/entities/weather_entity.dart';

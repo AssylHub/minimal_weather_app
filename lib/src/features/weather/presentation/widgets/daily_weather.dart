@@ -43,12 +43,11 @@ class _DailyWeatherState extends State<DailyWeather> {
                     Row(
                       spacing: 5,
                       children: [
-                        Image.asset(
-                          statusWeather.getImage7Day(
-                            widget.weatherEntity.weatherCodesDaily[index],
-                          ),
-                          scale: 3,
-                        ),
+                        statusWeather
+                            .getImage7Day(
+                              widget.weatherEntity.weatherCodesDaily[index],
+                            )
+                            .image(scale: 3),
                         Text(
                           StatusWeather().getText(
                             widget.weatherEntity.weatherCodesDaily[index],

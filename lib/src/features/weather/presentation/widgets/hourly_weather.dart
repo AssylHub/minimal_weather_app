@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app2/src/core/utils/status_weather.dart';
@@ -43,15 +42,15 @@ class _HourlyWeatherState extends State<HourlyWeather> {
               children: [
                 Text(DateFormat("HH:mm").format(DateTime.parse(time))),
                 Text(DateFormat("EEE").format(DateTime.parse(time))),
-                Image.asset(
-                  statusWeather.getImageToday(
-                    widget.weatherEntity.weatherCodes[index],
-                    time,
-                    widget.weatherEntity.sunriseList[index24],
-                    widget.weatherEntity.sunsetList[index24],
-                  ),
-                  scale: 3,
-                ),
+                statusWeather
+                    .getImageToday(
+                      widget.weatherEntity.weatherCodes[index],
+                      time,
+                      widget.weatherEntity.sunriseList[index24],
+                      widget.weatherEntity.sunsetList[index24],
+                    )
+                    .image(scale: 3),
+
                 Text(
                   widget.weatherEntity.temperatures[index].toString(),
                   style: TextStyle(fontSize: 18),

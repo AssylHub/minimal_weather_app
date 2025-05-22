@@ -51,12 +51,11 @@ class _DailyWeatherCardState extends State<DailyWeatherCard> {
             ),
           ),
           Expanded(
-            child: Image.asset(
-              statusWeather.getImageNowDaily(
-                widget.weatherEntity.weatherCodesDaily[widget.index],
-              ),
-              scale: 6.5,
-            ),
+            child: statusWeather
+                .getImageNowDaily(
+                  widget.weatherEntity.weatherCodesDaily[widget.index],
+                )
+                .image(scale: 6.5),
           ),
         ],
       ),

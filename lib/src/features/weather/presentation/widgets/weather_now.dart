@@ -22,6 +22,15 @@ class _WeatherNowState extends State<WeatherNow> {
   final statusWeather = StatusWeather();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(
+      "${widget.currentWeather.weatherCode}ff ${widget.currentWeather.time}dd${widget.currentWeather.sunrise}: ${widget.currentWeather.sunset}",
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
@@ -45,21 +54,29 @@ class _WeatherNowState extends State<WeatherNow> {
             ],
           ),
 
-          Image(
-            image: AssetImage(
-              statusWeather.getImageNow(
+          // Image(
+          //   image: AssetImage(
+          //     statusWeather.getImageNow(
+          //       widget
+          //           .currentWeather
+          //           .weatherCode, // widget.weather hour weather code
+          //       widget.currentWeather.time, // current hour time
+          //       widget.currentWeather.sunrise,
+          //       widget.currentWeather.sunset,
+          //     ),
+          //   ),
+          //   height: 140,
+          // ),
+          statusWeather
+              .getImageNow(
                 widget
                     .currentWeather
                     .weatherCode, // widget.weather hour weather code
                 widget.currentWeather.time, // current hour time
                 widget.currentWeather.sunrise,
                 widget.currentWeather.sunset,
-              ),
-            ),
-            fit: BoxFit.fill,
-            height: 140,
-          ),
-
+              )
+              .image(height: 140),
           // ElevatedButton(
           //   onPressed: () {
           //     print(

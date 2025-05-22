@@ -1,9 +1,21 @@
 import 'package:get/get.dart';
+import 'package:weather_app2/gen/assets.gen.dart';
 
 const assetImageRoot = 'assets/images/';
 
 class StatusWeather {
-  String getImageNow(
+  final Map<String, List<int>> _weatherConditions = {
+    'clear': [0],
+    'cloud': [1, 2, 3],
+    'fog': [45, 48],
+    'rain': [51, 53, 55, 56, 57, 61, 63, 65, 66, 67],
+    'rainFall': [80, 81, 82],
+    'snow': [71, 73, 75, 77, 85, 86],
+    'thunder': [95],
+    'storm': [96, 99],
+  };
+
+  AssetGenImage getImageNow(
     int weather,
     String time,
     String timeDay,
@@ -28,104 +40,61 @@ class StatusWeather {
       night.minute,
     );
 
-    switch (weather) {
-      case 0:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}sun.png';
-        } else {
-          return '${assetImageRoot}full-moon.png';
+    final isDay =
+        currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime);
+
+    for (final entry in _weatherConditions.entries) {
+      if (entry.value.contains(weather)) {
+        switch (entry.key) {
+          case 'clear':
+            return isDay ? Assets.images.clearDay : Assets.images.fullMoon;
+          case 'cloud':
+            return isDay ? Assets.images.cloud : Assets.images.moon;
+          case 'fog':
+            return isDay ? Assets.images.fog : Assets.images.fogMoon;
+          case 'rain':
+            return Assets.images.rain;
+          case 'rainFall':
+            return Assets.images.rainFall;
+          case 'snow':
+            return Assets.images.snow;
+          case 'thunder':
+            return Assets.images.thunder;
+          case 'storm':
+            return Assets.images.storm;
         }
-      case 1:
-      case 2:
-      case 3:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}cloud.png';
-        } else {
-          return '${assetImageRoot}moon.png';
-        }
-      case 45:
-      case 48:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}fog.png';
-        } else {
-          return '${assetImageRoot}fog_moon.png';
-        }
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-        return '${assetImageRoot}rain.png';
-      case 80:
-      case 81:
-      case 82:
-        return '${assetImageRoot}rain-fall.png';
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        return '${assetImageRoot}snow.png';
-      case 95:
-        return '${assetImageRoot}thunder.png';
-      case 96:
-      case 99:
-        return '${assetImageRoot}storm.png';
-      default:
-        return '';
+      }
     }
+    return Assets.images.clearDay;
   }
 
-  String getImageNowDaily(int? weather) {
-    switch (weather) {
-      case 0:
-        return '${assetImageRoot}sun.png';
-      case 1:
-      case 2:
-      case 3:
-        return '${assetImageRoot}cloud.png';
-      case 45:
-      case 48:
-        return '${assetImageRoot}fog.png';
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-        return '${assetImageRoot}rain.png';
-      case 80:
-      case 81:
-      case 82:
-        return '${assetImageRoot}rain-fall.png';
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        return '${assetImageRoot}snow.png';
-      case 95:
-        return '${assetImageRoot}thunder.png';
-      case 96:
-      case 99:
-        return '${assetImageRoot}storm.png';
-      default:
-        return '';
+  AssetGenImage getImageNowDaily(int? weather) {
+    for (final entry in _weatherConditions.entries) {
+      if (entry.value.contains(weather)) {
+        switch (entry.key) {
+          case 'clear':
+            return Assets.images.sun;
+          case 'cloud':
+            return Assets.images.cloud;
+          case 'fog':
+            return Assets.images.fog;
+          case 'rain':
+            return Assets.images.rain;
+          case 'rainFall':
+            return Assets.images.rainFall;
+          case 'snow':
+            return Assets.images.snow;
+          case 'thunder':
+            return Assets.images.thunder;
+          case 'storm':
+            return Assets.images.storm;
+        }
+      }
     }
+    return Assets.images.sun;
   }
 
-  String getImageToday(
+  AssetGenImage getImageToday(
     int weather,
     String time,
     String timeDay,
@@ -150,109 +119,56 @@ class StatusWeather {
       night.minute,
     );
 
-    switch (weather) {
-      case 0:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}clear_day.png';
-        } else {
-          return '${assetImageRoot}clear_night.png';
+    final isDay =
+        currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime);
+
+    for (final entry in _weatherConditions.entries) {
+      if (entry.value.contains(weather)) {
+        switch (entry.key) {
+          case 'clear':
+            return isDay ? Assets.images.clearDay : Assets.images.clearNight;
+          case 'cloud':
+            return isDay ? Assets.images.cloudyDay : Assets.images.cloudyNight;
+          case 'fog':
+            return isDay ? Assets.images.fogDay : Assets.images.fogNight;
+          case 'rain':
+          case 'rainFall':
+            return isDay ? Assets.images.rainDay : Assets.images.rainNight;
+          case 'snow':
+            return isDay ? Assets.images.snowDay : Assets.images.snowNight;
+          case 'thunder':
+          case 'storm':
+            return isDay
+                ? Assets.images.thunderDay
+                : Assets.images.thunderNight;
         }
-      case 1:
-      case 2:
-      case 3:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}cloudy_day.png';
-        } else {
-          return '${assetImageRoot}cloudy_night.png';
-        }
-      case 45:
-      case 48:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}fog_day.png';
-        } else {
-          return '${assetImageRoot}fog_night.png';
-        }
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-      case 80:
-      case 81:
-      case 82:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}rain_day.png';
-        } else {
-          return '${assetImageRoot}rain_night.png';
-        }
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}snow_day.png';
-        } else {
-          return '${assetImageRoot}snow_night.png';
-        }
-      case 95:
-      case 96:
-      case 99:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return '${assetImageRoot}thunder_day.png';
-        } else {
-          return '${assetImageRoot}thunder_night.png';
-        }
-      default:
-        return '';
+      }
     }
+    return Assets.images.clearDay;
   }
 
-  String getImage7Day(int? weather) {
-    switch (weather) {
-      case 0:
-        return '${assetImageRoot}clear_day.png';
-      case 1:
-      case 2:
-      case 3:
-        return '${assetImageRoot}cloudy_day.png';
-      case 45:
-      case 48:
-        return '${assetImageRoot}fog_day.png';
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-      case 80:
-      case 81:
-      case 82:
-        return '${assetImageRoot}rain_day.png';
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        return '${assetImageRoot}snow_day.png';
-      case 95:
-      case 96:
-      case 99:
-        return '${assetImageRoot}thunder_day.png';
-      default:
-        return '';
+  AssetGenImage getImage7Day(int? weather) {
+    for (final entry in _weatherConditions.entries) {
+      if (entry.value.contains(weather)) {
+        switch (entry.key) {
+          case 'clear':
+            return Assets.images.clearDay;
+          case 'cloud':
+            return Assets.images.cloudyDay;
+          case 'fog':
+            return Assets.images.fogDay;
+          case 'rain':
+          case 'rainFall':
+            return Assets.images.rainDay;
+          case 'snow':
+            return Assets.images.snowDay;
+          case 'thunder':
+          case 'storm':
+            return Assets.images.thunderDay;
+        }
+      }
     }
+    return Assets.images.clearDay;
   }
 
   String getText(int? weather) {
@@ -301,7 +217,7 @@ class StatusWeather {
     }
   }
 
-  String getImageNotification(
+  AssetGenImage getImageNotification(
     int weather,
     String time,
     String timeDay,
@@ -326,74 +242,31 @@ class StatusWeather {
       night.minute,
     );
 
-    switch (weather) {
-      case 0:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return 'sun.png';
-        } else {
-          return 'full-moon.png';
-        }
-      case 1:
-      case 2:
-      case 3:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return 'cloud.png';
-        } else {
-          return 'moon.png';
-        }
-      case 45:
-      case 48:
-        if (currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime)) {
-          return 'fog.png';
-        } else {
-          return 'fog_moon.png';
-        }
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-        return 'rain.png';
-      case 80:
-      case 81:
-      case 82:
-        return 'rain-fall.png';
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        return 'snow.png';
-      case 95:
-        return 'thunder.png';
-      case 96:
-      case 99:
-        return 'storm.png';
-      default:
-        return '';
-    }
-  }
+    final isDay =
+        currentTime.isAfter(dayTime) && currentTime.isBefore(nightTime);
 
-  String getWeatherDescription(int code) {
-    switch (code) {
-      case 0:
-        return 'Clear sky';
-      case 1:
-        return 'Partly cloudy';
-      case 2:
-        return 'Cloudy';
-      case 3:
-        return 'Overcast';
-      case 4:
-        return 'Rainy';
-      default:
-        return 'Unknown';
+    for (final entry in _weatherConditions.entries) {
+      if (entry.value.contains(weather)) {
+        switch (entry.key) {
+          case 'clear':
+            return isDay ? Assets.images.sun : Assets.images.fullMoon;
+          case 'cloud':
+            return isDay ? Assets.images.cloud : Assets.images.moon;
+          case 'fog':
+            return isDay ? Assets.images.fog : Assets.images.fogMoon;
+          case 'rain':
+            return Assets.images.rain;
+          case 'rainFall':
+            return Assets.images.rainFall;
+          case 'snow':
+            return Assets.images.snow;
+          case 'thunder':
+            return Assets.images.thunder;
+          case 'storm':
+            return Assets.images.storm;
+        }
+      }
     }
+    return Assets.images.sun;
   }
 }

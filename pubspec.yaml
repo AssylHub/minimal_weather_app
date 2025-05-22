@@ -72,6 +72,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
   injectable_generator: ^2.7.0
+  flutter_gen_runner: ^5.10.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -88,6 +89,7 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -114,3 +116,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+# flutter_gen:
+#   output: lib/gen/
+#   integrations:
+#     flutter_svg: true
