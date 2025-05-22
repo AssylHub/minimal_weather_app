@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource.dart';
-import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource_impl.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
 import 'package:weather_app2/features/weather/domain/repositories/weather_repo.dart';
 
+@LazySingleton(as: WeatherRepo)
 class WeatherRepoImpl implements WeatherRepo {
   final WeatherRemoteDatasource remoteDatasource;
 

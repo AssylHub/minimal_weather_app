@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_app2/app/router.dart';
-import 'package:weather_app2/core/di/injector.dart';
+import 'package:go_router/go_router.dart';
+import 'package:weather_app2/core/router/router.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dart';
+import 'core/service/injectable/injectable_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,16 +29,18 @@ void main() async {
                   WeatherBloc(getWeatherByCord: sl(), getCurrentWeather: sl()),
         ),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final GoRouter _router = routerProvider();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: appRouter);
+    return MaterialApp.router(routerConfig: _router);
   }
 }

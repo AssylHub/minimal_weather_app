@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 import 'package:weather_app2/features/geolocation/presentation/screens/select_geolocation.dart';
 import 'package:weather_app2/features/map/presentation/screens/map_screen.dart';
@@ -11,18 +9,9 @@ import 'package:weather_app2/features/weather/presentation/bloc/weather_bloc.dar
 import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
-    required this.lat,
-    required this.lon,
-    required this.cityName,
-    required this.district,
-  });
+  const HomeScreen({super.key, required this.geolocation});
 
-  final double lat;
-  final double lon;
-  final String cityName;
-  final String district;
+  final GeolocationEntity geolocation;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -42,10 +31,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     setupTabController();
     context.read<WeatherBloc>().add(
       FetchWeatherByCordEvent(
-        widget.lat,
-        widget.lon,
-        widget.cityName,
-        widget.district,
+        widget.geolocation.latitude,
+        widget.geolocation.longitude,
+        widget.geolocation.city,
+        widget.geolocation.district,
       ),
     );
   }
@@ -58,9 +47,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   void setupTabController() {
     screens = [
-      WeatherScreen(lat: widget.lat, lon: widget.lon),
+      WeatherScreen(
+        lat: widget.geolocation.latitude,
+        lon: widget.geolocation.longitude,
+      ),
       Center(child: Text("Forecast Page")),
-      MapScreen(lat: widget.lat, lon: widget.lon),
+      MapScreen(
+        lat: widget.geolocation.latitude,
+        lon: widget.geolocation.longitude,
+      ),
       Center(child: Text("Forecast Page")),
     ];
     tabController = TabController(
@@ -118,7 +113,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     );
                   },
                 )
-                : Text("${widget.cityName} ${widget.district}", maxLines: 2),
+                : Text(
+                  "${widget.geolocation.city} ${widget.geolocation.district}",
+                  maxLines: 2,
+                ),
           int() => null,
         },
         actions: switch (tabIndex) {

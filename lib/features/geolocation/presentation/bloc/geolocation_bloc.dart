@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_current_location.dart';
@@ -9,6 +10,7 @@ import 'package:weather_app2/core/usecases/usecase.dart';
 part 'geolocation_event.dart';
 part 'geolocation_state.dart';
 
+@injectable
 class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   final GetCurrentLocation getCurrentLocation;
   final GetLocationByCity getLocationByCity;
@@ -51,6 +53,6 @@ class GeolocationBloc extends Bloc<GeolocationEvent, GeolocationState> {
   }
 
   String _mapFailureToMessage(Failure failure) {
-    return failure.message ?? "Unexpected error";
+    return failure.message;
   }
 }

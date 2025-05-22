@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:weather_app2/core/di/injector.dart';
-import 'package:weather_app2/features/geolocation/di/geolocation_di.dart';
+import 'package:weather_app2/core/router/router.dart';
+import 'package:weather_app2/core/service/injectable/injectable_service.dart';
+import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_current_location.dart';
 import 'package:weather_app2/features/geolocation/domain/usecases/get_location_by_city.dart';
 import 'package:weather_app2/features/geolocation/presentation/bloc/geolocation_bloc.dart';
-import 'package:weather_app2/features/home/presentation/screens/home_screen.dart';
-import 'package:weather_app2/features/weather/presentation/screens/weather_screen.dart';
 
 class SelectGeolocation extends StatefulWidget {
   const SelectGeolocation({super.key, required this.isStart});
@@ -34,18 +34,14 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
 
   void submitForm() {
     if (formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder:
-              (context) => HomeScreen(
-                lat: double.parse(latController.text.trim()),
-                lon: double.parse(longController.text.trim()),
-                cityName: cityController.text.trim(),
-                district: districtController.text.trim(),
-              ),
-        ),
+      final geolocation = GeolocationEntity(
+        latitude: double.parse(latController.text.trim()),
+        longitude: double.parse(longController.text.trim()),
+        city: cityController.text.trim(),
+        district: districtController.text.trim(),
       );
+
+      context.go(RoutePaths.home, extra: geolocation);
     }
   }
 

@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource.dart';
 import 'package:weather_app2/features/weather/data/models/weather_model.dart';
 
 import 'package:http/http.dart' as http;
 
+@LazySingleton(as: WeatherRemoteDatasource)
 class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   final http.Client client;
   final String apiKey;
@@ -25,18 +27,18 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
       "&forecast_days=12&timezone=auto",
     );
 
-    print(url);
+    // print(url);
 
     final response = await client.get(url);
 
-    print(response.body);
+    // print(response.body);
 
     if (response.statusCode == 200) {
       return Weather.fromMap(jsonDecode(response.body));
     } else {
-      print(
-        "Failed to fetch weather. ${response.statusCode} ${response.body} ",
-      );
+      // print(
+      //   "Failed to fetch weather. ${response.statusCode} ${response.body} ",
+      // );
       throw Exception("Failed to fetch weather. ");
     }
   }

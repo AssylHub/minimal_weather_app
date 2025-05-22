@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
 import 'package:weather_app2/features/weather/domain/repositories/weather_repo.dart';
 
+@injectable
 class GetWeatherByCord {
   final WeatherRepo repo;
 

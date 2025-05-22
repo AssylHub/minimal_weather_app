@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/features/weather/data/services/weather_service.dart';
 import 'package:weather_app2/features/weather/domain/entities/current_weather.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
-
+@injectable
 class GetCurrentWeather {
   final WeatherService weatherService;
 

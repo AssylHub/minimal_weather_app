@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/weather/domain/entities/current_weather.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
@@ -9,6 +10,7 @@ import 'package:weather_app2/features/weather/domain/usecases/get_weather_by_cor
 part 'weather_event.dart';
 part 'weather_state.dart';
 
+@injectable
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final GetWeatherByCord getWeatherByCord;
   final GetCurrentWeather getCurrentWeather;

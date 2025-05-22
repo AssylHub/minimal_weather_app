@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/utils/location_helper.dart';
 import 'package:weather_app2/features/geolocation/data/datasources/geolocation_data_source.dart';
 import 'package:weather_app2/features/geolocation/data/models/geolocation.dart';
 
 import 'package:http/http.dart' as http;
 
+@LazySingleton(as: GeolocationDataSource)
 class GeolocationDataSourceImpl implements GeolocationDataSource {
   final http.Client client;
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app2/core/utils/status_weather.dart';
 import 'package:weather_app2/features/weather/domain/entities/current_weather.dart';
 
 class SunriseAndSunset extends StatelessWidget {
@@ -10,8 +9,6 @@ class SunriseAndSunset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusWeather = StatusWeather();
-
     return Container(
       height: 100,
       padding: EdgeInsets.all(20),

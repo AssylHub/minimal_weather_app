@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
 import 'package:weather_app2/features/geolocation/data/datasources/geolocation_data_source.dart';
 import 'package:weather_app2/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/features/geolocation/domain/repo/geolocation_repo.dart';
 
+@LazySingleton(as: GeolocationRepo)
 class GeolocationRepoImpl implements GeolocationRepo {
   final GeolocationDataSource geolocationDataSource;
 
