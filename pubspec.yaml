@@ -56,6 +56,9 @@ dependencies:
   go_router: ^15.1.2
   injectable: ^2.5.0
   dio: ^5.8.0+1
+  talker_flutter: ^4.7.9
+  talker_bloc_logger: ^4.7.9
+  talker_dio_logger: ^4.7.9
 
 dev_dependencies:
   flutter_test:

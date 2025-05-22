@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:weather_app2/core/errors/failure.dart';
+import 'package:weather_app2/core/utils/loggers/log.dart';
 import 'package:weather_app2/features/weather/data/datasources/weather_remote_datasource.dart';
 import 'package:weather_app2/features/weather/domain/entities/weather_entity.dart';
 import 'package:weather_app2/features/weather/domain/repositories/weather_repo.dart';
@@ -19,6 +20,10 @@ class WeatherRepoImpl implements WeatherRepo {
     String district,
   ) async {
     try {
+      Log.info(
+        'Fetching weather',
+        'lat: $lat, lon: $lon, city: $cityName, district: $district',
+      );
       final weather = await remoteDatasource.getWeatherByCord(
         lat,
         lon,
@@ -26,8 +31,11 @@ class WeatherRepoImpl implements WeatherRepo {
         district,
       );
 
+      Log.info('Weather fetched', weather);
+
       return Right(weather.toEntity());
     } catch (e) {
+      Log.error('Weather fetch failed', e);
       return Left(ServerFailure(e.toString()));
     }
   }
