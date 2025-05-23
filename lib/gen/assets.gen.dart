@@ -35,16 +35,13 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/atmospheric.png
-  AssetGenImage get atmospheric =>
-      const AssetGenImage('assets/images/atmospheric.png');
+  AssetGenImage get atmospheric => const AssetGenImage('assets/images/atmospheric.png');
 
   /// File path: assets/images/clear_day.png
-  AssetGenImage get clearDay =>
-      const AssetGenImage('assets/images/clear_day.png');
+  AssetGenImage get clearDay => const AssetGenImage('assets/images/clear_day.png');
 
   /// File path: assets/images/clear_night.png
-  AssetGenImage get clearNight =>
-      const AssetGenImage('assets/images/clear_night.png');
+  AssetGenImage get clearNight => const AssetGenImage('assets/images/clear_night.png');
 
   /// File path: assets/images/cloud.png
   AssetGenImage get cloud => const AssetGenImage('assets/images/cloud.png');
@@ -53,12 +50,10 @@ class $AssetsImagesGen {
   AssetGenImage get cloudy => const AssetGenImage('assets/images/cloudy.png');
 
   /// File path: assets/images/cloudy_day.png
-  AssetGenImage get cloudyDay =>
-      const AssetGenImage('assets/images/cloudy_day.png');
+  AssetGenImage get cloudyDay => const AssetGenImage('assets/images/cloudy_day.png');
 
   /// File path: assets/images/cloudy_night.png
-  AssetGenImage get cloudyNight =>
-      const AssetGenImage('assets/images/cloudy_night.png');
+  AssetGenImage get cloudyNight => const AssetGenImage('assets/images/cloudy_night.png');
 
   /// File path: assets/images/cold.png
   AssetGenImage get cold => const AssetGenImage('assets/images/cold.png');
@@ -67,8 +62,7 @@ class $AssetsImagesGen {
   AssetGenImage get dew => const AssetGenImage('assets/images/dew.png');
 
   /// File path: assets/images/evaporation.png
-  AssetGenImage get evaporation =>
-      const AssetGenImage('assets/images/evaporation.png');
+  AssetGenImage get evaporation => const AssetGenImage('assets/images/evaporation.png');
 
   /// File path: assets/images/fog.png
   AssetGenImage get fog => const AssetGenImage('assets/images/fog.png');
@@ -77,64 +71,52 @@ class $AssetsImagesGen {
   AssetGenImage get fogDay => const AssetGenImage('assets/images/fog_day.png');
 
   /// File path: assets/images/fog_moon.png
-  AssetGenImage get fogMoon =>
-      const AssetGenImage('assets/images/fog_moon.png');
+  AssetGenImage get fogMoon => const AssetGenImage('assets/images/fog_moon.png');
 
   /// File path: assets/images/fog_night.png
-  AssetGenImage get fogNight =>
-      const AssetGenImage('assets/images/fog_night.png');
+  AssetGenImage get fogNight => const AssetGenImage('assets/images/fog_night.png');
 
   /// File path: assets/images/full-moon.png
-  AssetGenImage get fullMoon =>
-      const AssetGenImage('assets/images/full-moon.png');
+  AssetGenImage get fullMoon => const AssetGenImage('assets/images/full-moon.png');
 
   /// File path: assets/images/hot.png
   AssetGenImage get hot => const AssetGenImage('assets/images/hot.png');
 
   /// File path: assets/images/humidity.png
-  AssetGenImage get humidity =>
-      const AssetGenImage('assets/images/humidity.png');
+  AssetGenImage get humidity => const AssetGenImage('assets/images/humidity.png');
 
   /// File path: assets/images/moon.png
   AssetGenImage get moon => const AssetGenImage('assets/images/moon.png');
 
   /// File path: assets/images/precipitation_probability.png
-  AssetGenImage get precipitationProbability =>
-      const AssetGenImage('assets/images/precipitation_probability.png');
+  AssetGenImage get precipitationProbability => const AssetGenImage('assets/images/precipitation_probability.png');
 
   /// File path: assets/images/rain-fall.png
-  AssetGenImage get rainFall =>
-      const AssetGenImage('assets/images/rain-fall.png');
+  AssetGenImage get rainFall => const AssetGenImage('assets/images/rain-fall.png');
 
   /// File path: assets/images/rain.png
   AssetGenImage get rain => const AssetGenImage('assets/images/rain.png');
 
   /// File path: assets/images/rain_day.png
-  AssetGenImage get rainDay =>
-      const AssetGenImage('assets/images/rain_day.png');
+  AssetGenImage get rainDay => const AssetGenImage('assets/images/rain_day.png');
 
   /// File path: assets/images/rain_night.png
-  AssetGenImage get rainNight =>
-      const AssetGenImage('assets/images/rain_night.png');
+  AssetGenImage get rainNight => const AssetGenImage('assets/images/rain_night.png');
 
   /// File path: assets/images/rainfall.png
-  AssetGenImage get rainfall =>
-      const AssetGenImage('assets/images/rainfall.png');
+  AssetGenImage get rainfall => const AssetGenImage('assets/images/rainfall.png');
 
   /// File path: assets/images/shortwave_radiation.png
-  AssetGenImage get shortwaveRadiation =>
-      const AssetGenImage('assets/images/shortwave_radiation.png');
+  AssetGenImage get shortwaveRadiation => const AssetGenImage('assets/images/shortwave_radiation.png');
 
   /// File path: assets/images/snow.png
   AssetGenImage get snow => const AssetGenImage('assets/images/snow.png');
 
   /// File path: assets/images/snow_day.png
-  AssetGenImage get snowDay =>
-      const AssetGenImage('assets/images/snow_day.png');
+  AssetGenImage get snowDay => const AssetGenImage('assets/images/snow_day.png');
 
   /// File path: assets/images/snow_night.png
-  AssetGenImage get snowNight =>
-      const AssetGenImage('assets/images/snow_night.png');
+  AssetGenImage get snowNight => const AssetGenImage('assets/images/snow_night.png');
 
   /// File path: assets/images/storm.png
   AssetGenImage get storm => const AssetGenImage('assets/images/storm.png');
@@ -149,19 +131,16 @@ class $AssetsImagesGen {
   AssetGenImage get sunset => const AssetGenImage('assets/images/sunset.png');
 
   /// File path: assets/images/temperature.png
-  AssetGenImage get temperature =>
-      const AssetGenImage('assets/images/temperature.png');
+  AssetGenImage get temperature => const AssetGenImage('assets/images/temperature.png');
 
   /// File path: assets/images/thunder.png
   AssetGenImage get thunder => const AssetGenImage('assets/images/thunder.png');
 
   /// File path: assets/images/thunder_day.png
-  AssetGenImage get thunderDay =>
-      const AssetGenImage('assets/images/thunder_day.png');
+  AssetGenImage get thunderDay => const AssetGenImage('assets/images/thunder_day.png');
 
   /// File path: assets/images/thunder_night.png
-  AssetGenImage get thunderNight =>
-      const AssetGenImage('assets/images/thunder_night.png');
+  AssetGenImage get thunderNight => const AssetGenImage('assets/images/thunder_night.png');
 
   /// File path: assets/images/uv.png
   AssetGenImage get uv => const AssetGenImage('assets/images/uv.png');
@@ -173,12 +152,10 @@ class $AssetsImagesGen {
   AssetGenImage get wind => const AssetGenImage('assets/images/wind.png');
 
   /// File path: assets/images/windgusts.png
-  AssetGenImage get windgusts =>
-      const AssetGenImage('assets/images/windgusts.png');
+  AssetGenImage get windgusts => const AssetGenImage('assets/images/windgusts.png');
 
   /// File path: assets/images/windsock.png
-  AssetGenImage get windsock =>
-      const AssetGenImage('assets/images/windsock.png');
+  AssetGenImage get windsock => const AssetGenImage('assets/images/windsock.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
