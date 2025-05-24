@@ -4,10 +4,7 @@ import 'package:weather_app2/src/features/weather/presentation/widgets/weather_d
 import '../bloc/weather_bloc.dart';
 
 class WeatherScreen extends StatelessWidget {
-  final double lat;
-  final double lon;
-
-  const WeatherScreen({super.key, required this.lat, required this.lon});
+  const WeatherScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -65,6 +65,7 @@ dependencies:
   talker_dio_logger: ^4.7.9
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

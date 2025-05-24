@@ -54,10 +54,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   void setupTabController() {
     screens = [
-      WeatherScreen(
-        lat: widget.geolocation.latitude,
-        lon: widget.geolocation.longitude,
-      ),
+      WeatherScreen(),
       Center(child: Text(S.of(context).forecase_page)),
       MapScreen(
         lat: widget.geolocation.latitude,

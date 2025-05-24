@@ -3,7 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:weather_app2/src/core/utils/location_helper.dart';
-import 'package:weather_app2/src/features/geolocation/data/datasources/geolocation_data_source.dart';
+import 'package:weather_app2/src/features/geolocation/data/datasources/i_geolocation_remote.dart';
 import 'package:weather_app2/src/features/geolocation/data/models/geolocation.dart';
 
 @LazySingleton(as: GeolocationDataSource)

@@ -4,7 +4,8 @@ part 'hourly_weather_model.freezed.dart';
 part 'hourly_weather_model.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class HourlyWeatherModelConverter implements JsonConverter<HourlyWeatherModel, Map<String, dynamic>> {
+class HourlyWeatherModelConverter
+    implements JsonConverter<HourlyWeatherModel, Map<String, dynamic>> {
   const HourlyWeatherModelConverter();
 
   @override
@@ -19,7 +20,7 @@ class HourlyWeatherModelConverter implements JsonConverter<HourlyWeatherModel, M
 @freezed
 abstract class HourlyWeatherModel with _$HourlyWeatherModel {
   const HourlyWeatherModel._();
-  
+
   const factory HourlyWeatherModel({
     @JsonKey(name: 'time') required List<String> time,
     @JsonKey(name: 'weathercode') required List<int> weatherCodes,
@@ -30,10 +31,12 @@ abstract class HourlyWeatherModel with _$HourlyWeatherModel {
     @JsonKey(name: 'winddirection_10m') required List<int> direction,
     @JsonKey(name: 'windspeed_10m') required List<double> windSpeed,
     @JsonKey(name: 'windgusts_10m') required List<double> windGust,
-    @JsonKey(name: 'evapotranspiration') required List<double> evapotranspiration,
+    @JsonKey(name: 'evapotranspiration')
+    required List<double> evapotranspiration,
     @JsonKey(name: 'precipitation') required List<double> precipitation,
     @JsonKey(name: 'rain') required List<double> rain,
-    @JsonKey(name: 'precipitation_probability') required List<int> precipitationProbability,
+    @JsonKey(name: 'precipitation_probability')
+    required List<int> precipitationProbability,
     @JsonKey(name: 'relativehumidity_2m') required List<int> humidity,
     @JsonKey(name: 'cloudcover') required List<int> cloudCover,
     @JsonKey(name: 'surface_pressure') required List<double> surfacePressure,

@@ -41,8 +41,11 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
         city: cityController.text.trim(),
         district: districtController.text.trim(),
       );
-
-      context.go(RoutePaths.home, extra: geolocation);
+      if (widget.isStart) {
+        context.go(RoutePaths.home, extra: geolocation);
+      } else {
+        context.pop(geolocation);
+      }
     }
   }
 
