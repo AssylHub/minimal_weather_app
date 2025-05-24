@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:weather_app2/gen/assets.gen.dart';
+import 'package:weather_app2/src/core/localization/generated/l10n.dart';
 
 const assetImageRoot = 'assets/images/';
 
@@ -174,44 +175,44 @@ class StatusWeather {
   String getText(int? weather) {
     switch (weather) {
       case 0:
-        return 'clear_sky'.tr;
+        return S.current.clear_sky;
       case 1:
       case 2:
-        return 'cloudy'.tr;
+        return S.current.cloudy;
       case 3:
-        return 'overcast'.tr;
+        return S.current.overcast;
       case 45:
       case 48:
-        return 'fog'.tr;
+        return S.current.fog;
       case 51:
       case 53:
       case 55:
-        return 'drizzle'.tr;
+        return S.current.drizzle;
       case 56:
       case 57:
-        return 'drizzling_rain'.tr;
+        return S.current.drizzling_rain;
       case 61:
       case 63:
       case 65:
-        return 'rain'.tr;
+        return S.current.rain;
       case 66:
       case 67:
-        return 'freezing_rain'.tr;
+        return S.current.freezing_rain;
       case 80:
       case 81:
       case 82:
-        return 'heavy_rains'.tr;
+        return S.current.heavy_rains;
       case 71:
       case 73:
       case 75:
       case 77:
       case 85:
       case 86:
-        return 'snow'.tr;
+        return S.current.snow;
       case 95:
       case 96:
       case 99:
-        return 'thunderstorm'.tr;
+        return S.current.thunderstorm;
       default:
         return '';
     }

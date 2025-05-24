@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app2/src/core/localization/generated/l10n.dart';
 import 'package:weather_app2/src/features/weather/domain/entities/current_weather.dart';
 
 class DescContainer extends StatefulWidget {
@@ -49,21 +50,21 @@ class _DescContainerState extends State<DescContainer> {
     ];
 
     final List<String> imageNames = [
-      'Dewpoint',
-      'Feels',
-      'Visibility',
-      'Direction',
-      'Wind',
-      'Gust',
-      'Evapotranspiration',
-      'Precipitation',
-      'Rain',
-      'Precipitation Probability',
-      'Humidity',
-      'Cloudcover',
-      'Pressure',
-      'UV-Index',
-      'Shortwave Radiation',
+      S.current.dewpoint,
+      S.current.feels,
+      S.current.visibility,
+      S.current.direction,
+      S.current.wind,
+      S.current.gust,
+      S.current.evapotranspiration,
+      S.current.precipitation,
+      S.current.rain,
+      S.current.precipitation_probability,
+      S.current.humidity,
+      S.current.cloudcover,
+      S.current.pressure,
+      S.current.uv_index,
+      S.current.shortwave_radiation,
     ];
 
     return Container(
@@ -72,7 +73,7 @@ class _DescContainerState extends State<DescContainer> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: ExpansionTile(
-        title: Text("Hourly weather variables"),
+        title: Text(S.current.hourly_weather_variables),
         shape: Border.all(color: Colors.transparent),
         children: [
           GridView.builder(

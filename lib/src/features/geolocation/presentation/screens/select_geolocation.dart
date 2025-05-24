@@ -13,6 +13,8 @@ import 'package:weather_app2/src/features/geolocation/domain/entities/geolocatio
 import 'package:weather_app2/src/features/geolocation/domain/usecases/get_current_location.dart';
 import 'package:weather_app2/src/features/geolocation/domain/usecases/get_location_by_city.dart';
 import 'package:weather_app2/src/features/geolocation/presentation/bloc/geolocation_bloc.dart';
+import 'package:weather_app2/src/core/localization/generated/l10n.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class SelectGeolocation extends StatefulWidget {
   const SelectGeolocation({super.key, required this.isStart});
@@ -143,7 +145,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           ],
                         ),
                       ),
-                      Center(child: Text("Use search or geolocation")),
+                      Center(child: Text(S.current.use_search_or_geolocation)),
                       IntrinsicHeight(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -159,7 +161,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                                   ),
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
-                                  hintText: "Search",
+                                  hintText: S.current.search,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide: BorderSide.none,
@@ -203,7 +205,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           prefixIcon: Icon(IconsaxPlusLinear.location),
                           fillColor: Colors.grey.shade200,
                           filled: true,
-                          hintText: "Latitude",
+                          hintText: S.current.latitude,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide.none,
@@ -212,7 +214,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
 
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Enter a value.";
+                            return S.current.enter_a_value;
                           }
 
                           return null;
@@ -225,7 +227,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           prefixIcon: Icon(IconsaxPlusLinear.location),
                           fillColor: Colors.grey.shade200,
                           filled: true,
-                          hintText: "Longitude",
+                          hintText: S.current.longitude,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide.none,
@@ -233,7 +235,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Enter a value.";
+                            return S.current.enter_a_value;
                           }
 
                           return null;
@@ -246,7 +248,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           prefixIcon: Icon(IconsaxPlusLinear.building_3),
                           fillColor: Colors.grey.shade200,
                           filled: true,
-                          hintText: "City",
+                          hintText: S.current.city,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide.none,
@@ -254,7 +256,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Enter a value.";
+                            return S.current.enter_a_value;
                           }
 
                           return null;
@@ -267,7 +269,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                           prefixIcon: Icon(IconsaxPlusLinear.global),
                           fillColor: Colors.grey.shade200,
                           filled: true,
-                          hintText: "District",
+                          hintText: S.current.district,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide.none,
@@ -280,7 +282,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                         onPressed: () {
                           submitForm();
                         },
-                        child: Text("Done"),
+                        child: Text(S.current.done),
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey.shade200,
                           foregroundColor: Colors.black,
@@ -296,7 +298,7 @@ class _SelectGeolocationState extends State<SelectGeolocation> {
                             ),
                           );
                         },
-                        child: const Text("View Logs"),
+                        child: Text(S.current.view_logs),
                       ),
                     ],
                   ),
