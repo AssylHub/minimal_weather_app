@@ -27,9 +27,9 @@ import 'package:weather_app2/src/features/geolocation/domain/usecases/get_locati
     as _i228;
 import 'package:weather_app2/src/features/geolocation/presentation/bloc/geolocation_bloc.dart'
     as _i902;
-import 'package:weather_app2/src/features/weather/data/datasources/weather_remote_datasource.dart'
+import 'package:weather_app2/src/features/weather/data/datasources/i_weather_remote.dart'
     as _i166;
-import 'package:weather_app2/src/features/weather/data/datasources/weather_remote_datasource_impl.dart'
+import 'package:weather_app2/src/features/weather/data/datasources/weather_remote_impl.dart'
     as _i483;
 import 'package:weather_app2/src/features/weather/data/repositories/weather_repo_impl.dart'
     as _i616;

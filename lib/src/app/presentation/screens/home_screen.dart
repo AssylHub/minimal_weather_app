@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:weather_app2/src/core/localization/generated/l10n.dart';
 import 'package:weather_app2/src/features/geolocation/domain/entities/geolocation_entity.dart';
 import 'package:weather_app2/src/features/geolocation/presentation/bloc/geolocation_bloc.dart';
 import 'package:weather_app2/src/features/geolocation/presentation/screens/select_geolocation.dart';
@@ -28,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    setupTabController();
     context.read<WeatherBloc>().add(
       FetchWeatherByCordEvent(
         widget.geolocation.latitude,
@@ -37,6 +37,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         widget.geolocation.district,
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    setupTabController();
   }
 
   @override
@@ -51,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         lat: widget.geolocation.latitude,
         lon: widget.geolocation.longitude,
       ),
-      Center(child: Text("Forecast Page")),
+      Center(child: Text(S.of(context).forecase_page)),
       MapScreen(
         lat: widget.geolocation.latitude,
         lon: widget.geolocation.longitude,
