@@ -3,12 +3,12 @@ import 'package:injectable/injectable.dart';
 import 'package:weather_app2/src/features/weather/data/datasources/i_weather_remote.dart';
 import 'package:weather_app2/src/features/weather/data/models/weather_model/weather_model.dart';
 
-@LazySingleton(as: WeatherRemoteDatasource)
-class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
+@LazySingleton(as: IWeatherRemote)
+class WeatherRemoteImpl implements IWeatherRemote {
   final String apiKey;
   final Dio dio;
 
-  WeatherRemoteDatasourceImpl({required this.apiKey, required this.dio});
+  WeatherRemoteImpl({required this.apiKey, required this.dio});
 
   @override
   Future<WeatherModel> getWeatherByCord(

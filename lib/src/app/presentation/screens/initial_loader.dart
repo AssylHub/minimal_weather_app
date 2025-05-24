@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_app2/src/core/router/router.dart';
-import 'package:weather_app2/src/features/geolocation/data/datasources/geolocation_local.dart';
+import 'package:weather_app2/src/features/geolocation/data/datasources/geolocation_local_impl.dart';
 import 'package:weather_app2/src/features/weather/data/datasources/weather_local_impl.dart';
 
 class InitialLoader extends StatefulWidget {
@@ -19,8 +19,8 @@ class _InitialLoaderState extends State<InitialLoader> {
   }
 
   Future<void> _checkCacheAndRedirect() async {
-    final weatherLocalDatasource = WeatherLocalDatasourceImpl();
-    final geolocationLocalDatasource = GeolocationLocalDatasourceImpl();
+    final weatherLocalDatasource = WeatherLocalImpl();
+    final geolocationLocalDatasource = GeolocationLocalImpl();
 
     final cachedWeather = await weatherLocalDatasource.getCachedWeather();
     final cachedGeolocation =
@@ -29,10 +29,7 @@ class _InitialLoaderState extends State<InitialLoader> {
     if (!mounted) return;
 
     if (cachedWeather != null && cachedGeolocation != null) {
-      context.goNamed(
-        RouteNames.home,
-        extra: cachedGeolocation.toEntity(),
-      );
+      context.goNamed(RouteNames.home, extra: cachedGeolocation.toEntity());
     } else {
       context.goNamed(RouteNames.geolocation);
     }

@@ -54,19 +54,6 @@ class _WeatherNowState extends State<WeatherNow> {
             ],
           ),
 
-          // Image(
-          //   image: AssetImage(
-          //     statusWeather.getImageNow(
-          //       widget
-          //           .currentWeather
-          //           .weatherCode, // widget.weather hour weather code
-          //       widget.currentWeather.time, // current hour time
-          //       widget.currentWeather.sunrise,
-          //       widget.currentWeather.sunset,
-          //     ),
-          //   ),
-          //   height: 140,
-          // ),
           statusWeather
               .getImageNow(
                 widget
@@ -77,14 +64,6 @@ class _WeatherNowState extends State<WeatherNow> {
                 widget.currentWeather.sunset,
               )
               .image(height: 140),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     print(
-          //       "Code: ${widget.currentWeather.weatherCode}, Time: ${widget.currentWeather.time}, Sunrise: ${widget.currentWeather.sunrise}, Sunset: ${widget.currentWeather.sunset}",
-          //     );
-          //   },
-          //   child: Icon(Icons.ad_units),
-          // ),
         ],
       ),
     );

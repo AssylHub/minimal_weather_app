@@ -9,8 +9,8 @@ import 'package:weather_app2/src/features/geolocation/domain/repo/geolocation_re
 
 @LazySingleton(as: GeolocationRepo)
 class GeolocationRepoImpl implements GeolocationRepo {
-  final GeolocationDataSource geolocationDataSource;
-  final GeolocationLocalDatasource geolocationLocalDatasource;
+  final IGeolocationRemote geolocationDataSource;
+  final IGeolocationLocal geolocationLocalDatasource;
 
   GeolocationRepoImpl({
     required this.geolocationDataSource,
@@ -39,7 +39,9 @@ class GeolocationRepoImpl implements GeolocationRepo {
     String cityName,
   ) async {
     try {
-      final geolocation = await geolocationDataSource.getLocationByCity(cityName);
+      final geolocation = await geolocationDataSource.getLocationByCity(
+        cityName,
+      );
       // Cache the geolocation locally
       await geolocationLocalDatasource.cacheGeolocation(geolocation);
       return Right(geolocation.toEntity());

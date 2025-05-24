@@ -9,8 +9,8 @@ import 'package:weather_app2/src/features/weather/domain/repositories/weather_re
 
 @LazySingleton(as: WeatherRepo)
 class WeatherRepoImpl implements WeatherRepo {
-  final WeatherRemoteDatasource remoteDatasource;
-  final WeatherLocalDatasource localDatasource;
+  final IWeatherRemote remoteDatasource;
+  final IWeatherLocal localDatasource;
 
   WeatherRepoImpl({
     required this.remoteDatasource,

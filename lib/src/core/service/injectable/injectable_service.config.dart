@@ -15,7 +15,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:weather_app2/src/core/api/dio/dio_provider.dart' as _i16;
 import 'package:weather_app2/src/features/geolocation/data/datasources/geolocaion_remote_impl.dart'
     as _i89;
-import 'package:weather_app2/src/features/geolocation/data/datasources/geolocation_local.dart'
+import 'package:weather_app2/src/features/geolocation/data/datasources/geolocation_local_impl.dart'
     as _i335;
 import 'package:weather_app2/src/features/geolocation/data/datasources/i_geolocation_local.dart'
     as _i141;
@@ -62,37 +62,32 @@ extension GetItInjectableX on _i174.GetIt {
     final dioProvider = _$DioProvider();
     gh.factory<_i693.WeatherService>(() => _i693.WeatherService());
     gh.lazySingleton<_i361.Dio>(() => dioProvider.dio);
-    gh.lazySingleton<_i141.GeolocationLocalDatasource>(
-      () => _i335.GeolocationLocalDatasourceImpl(),
+    gh.lazySingleton<_i141.IGeolocationLocal>(
+      () => _i335.GeolocationLocalImpl(),
     );
-    gh.lazySingleton<_i906.WeatherRemoteDatasource>(
-      () => _i604.WeatherRemoteDatasourceImpl(
-        apiKey: gh<String>(),
-        dio: gh<_i361.Dio>(),
-      ),
+    gh.lazySingleton<_i906.IWeatherRemote>(
+      () => _i604.WeatherRemoteImpl(apiKey: gh<String>(), dio: gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i241.WeatherLocalDatasource>(
-      () => _i402.WeatherLocalDatasourceImpl(),
-    );
+    gh.lazySingleton<_i241.IWeatherLocal>(() => _i402.WeatherLocalImpl());
     gh.factory<_i622.GetCurrentWeather>(
       () => _i622.GetCurrentWeather(weatherService: gh<_i693.WeatherService>()),
     );
     gh.lazySingleton<_i610.WeatherRepo>(
       () => _i616.WeatherRepoImpl(
-        remoteDatasource: gh<_i906.WeatherRemoteDatasource>(),
-        localDatasource: gh<_i241.WeatherLocalDatasource>(),
+        remoteDatasource: gh<_i906.IWeatherRemote>(),
+        localDatasource: gh<_i241.IWeatherLocal>(),
       ),
     );
     gh.factory<_i999.GetWeatherByCord>(
       () => _i999.GetWeatherByCord(gh<_i610.WeatherRepo>()),
     );
-    gh.lazySingleton<_i358.GeolocationDataSource>(
-      () => _i89.GeolocationDataSourceImpl(dio: gh<_i361.Dio>()),
+    gh.lazySingleton<_i358.IGeolocationRemote>(
+      () => _i89.GeolocationRemoteImpl(dio: gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i106.GeolocationRepo>(
       () => _i371.GeolocationRepoImpl(
-        geolocationDataSource: gh<_i358.GeolocationDataSource>(),
-        geolocationLocalDatasource: gh<_i141.GeolocationLocalDatasource>(),
+        geolocationDataSource: gh<_i358.IGeolocationRemote>(),
+        geolocationLocalDatasource: gh<_i141.IGeolocationLocal>(),
       ),
     );
     gh.factory<_i213.WeatherBloc>(

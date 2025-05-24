@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app2/src/features/weather/data/datasources/i_weather_local.dart';
 import 'package:weather_app2/src/features/weather/data/models/weather_model/weather_model.dart';
 
-@LazySingleton(as: WeatherLocalDatasource)
-class WeatherLocalDatasourceImpl implements WeatherLocalDatasource {
+@LazySingleton(as: IWeatherLocal)
+class WeatherLocalImpl implements IWeatherLocal {
   static const _cacheKey = 'CACHED_WEATHER';
 
   @override

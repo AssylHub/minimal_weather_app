@@ -6,11 +6,11 @@ import 'package:weather_app2/src/core/utils/location_helper.dart';
 import 'package:weather_app2/src/features/geolocation/data/datasources/i_geolocation_remote.dart';
 import 'package:weather_app2/src/features/geolocation/data/models/geolocation.dart';
 
-@LazySingleton(as: GeolocationDataSource)
-class GeolocationDataSourceImpl implements GeolocationDataSource {
+@LazySingleton(as: IGeolocationRemote)
+class GeolocationRemoteImpl implements IGeolocationRemote {
   final Dio dio;
 
-  GeolocationDataSourceImpl({required this.dio});
+  GeolocationRemoteImpl({required this.dio});
   @override
   Future<Geolocation> getCurrentLocation() async {
     await PermissionsUtil.ensureLocationPermission();

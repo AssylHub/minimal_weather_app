@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app2/src/features/geolocation/data/models/geolocation.dart';
 import 'i_geolocation_local.dart';
 
-@LazySingleton(as: GeolocationLocalDatasource)
-class GeolocationLocalDatasourceImpl implements GeolocationLocalDatasource {
+@LazySingleton(as: IGeolocationLocal)
+class GeolocationLocalImpl implements IGeolocationLocal {
   static const _cacheKey = 'CACHED_GEOLOCATION';
 
   @override

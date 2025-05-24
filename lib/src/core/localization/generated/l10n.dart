@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -76,37 +72,72 @@ class S {
 
   /// `Search`
   String get search {
-    return Intl.message('Search', name: 'search', desc: '', args: []);
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Latitude`
   String get latitude {
-    return Intl.message('Latitude', name: 'latitude', desc: '', args: []);
+    return Intl.message(
+      'Latitude',
+      name: 'latitude',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Longitude`
   String get longitude {
-    return Intl.message('Longitude', name: 'longitude', desc: '', args: []);
+    return Intl.message(
+      'Longitude',
+      name: 'longitude',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `City`
   String get city {
-    return Intl.message('City', name: 'city', desc: '', args: []);
+    return Intl.message(
+      'City',
+      name: 'city',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `District`
   String get district {
-    return Intl.message('District', name: 'district', desc: '', args: []);
+    return Intl.message(
+      'District',
+      name: 'district',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Done`
   String get done {
-    return Intl.message('Done', name: 'done', desc: '', args: []);
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `View Logs`
   String get view_logs {
-    return Intl.message('View Logs', name: 'view_logs', desc: '', args: []);
+    return Intl.message(
+      'View Logs',
+      name: 'view_logs',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter a value`
@@ -131,32 +162,62 @@ class S {
 
   /// `Dewpoint`
   String get dewpoint {
-    return Intl.message('Dewpoint', name: 'dewpoint', desc: '', args: []);
+    return Intl.message(
+      'Dewpoint',
+      name: 'dewpoint',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Feels`
   String get feels {
-    return Intl.message('Feels', name: 'feels', desc: '', args: []);
+    return Intl.message(
+      'Feels',
+      name: 'feels',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Visibility`
   String get visibility {
-    return Intl.message('Visibility', name: 'visibility', desc: '', args: []);
+    return Intl.message(
+      'Visibility',
+      name: 'visibility',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Direction`
   String get direction {
-    return Intl.message('Direction', name: 'direction', desc: '', args: []);
+    return Intl.message(
+      'Direction',
+      name: 'direction',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Wind`
   String get wind {
-    return Intl.message('Wind', name: 'wind', desc: '', args: []);
+    return Intl.message(
+      'Wind',
+      name: 'wind',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Gust`
   String get gust {
-    return Intl.message('Gust', name: 'gust', desc: '', args: []);
+    return Intl.message(
+      'Gust',
+      name: 'gust',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Evapotranspiration`
@@ -181,7 +242,12 @@ class S {
 
   /// `Rain`
   String get rain {
-    return Intl.message('Rain', name: 'rain', desc: '', args: []);
+    return Intl.message(
+      'Rain',
+      name: 'rain',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Precipitation Probability`
@@ -196,22 +262,42 @@ class S {
 
   /// `Humidity`
   String get humidity {
-    return Intl.message('Humidity', name: 'humidity', desc: '', args: []);
+    return Intl.message(
+      'Humidity',
+      name: 'humidity',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Cloudcover`
   String get cloudcover {
-    return Intl.message('Cloudcover', name: 'cloudcover', desc: '', args: []);
+    return Intl.message(
+      'Cloudcover',
+      name: 'cloudcover',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Pressure`
   String get pressure {
-    return Intl.message('Pressure', name: 'pressure', desc: '', args: []);
+    return Intl.message(
+      'Pressure',
+      name: 'pressure',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `UV-Index`
   String get uv_index {
-    return Intl.message('UV-Index', name: 'uv_index', desc: '', args: []);
+    return Intl.message(
+      'UV-Index',
+      name: 'uv_index',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Shortwave Radiation`
@@ -226,27 +312,52 @@ class S {
 
   /// `Clear Sky`
   String get clear_sky {
-    return Intl.message('Clear Sky', name: 'clear_sky', desc: '', args: []);
+    return Intl.message(
+      'Clear Sky',
+      name: 'clear_sky',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Cloudy`
   String get cloudy {
-    return Intl.message('Cloudy', name: 'cloudy', desc: '', args: []);
+    return Intl.message(
+      'Cloudy',
+      name: 'cloudy',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Overcast`
   String get overcast {
-    return Intl.message('Overcast', name: 'overcast', desc: '', args: []);
+    return Intl.message(
+      'Overcast',
+      name: 'overcast',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Fog`
   String get fog {
-    return Intl.message('Fog', name: 'fog', desc: '', args: []);
+    return Intl.message(
+      'Fog',
+      name: 'fog',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Drizzle`
   String get drizzle {
-    return Intl.message('Drizzle', name: 'drizzle', desc: '', args: []);
+    return Intl.message(
+      'Drizzle',
+      name: 'drizzle',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Drizzling Rain`
@@ -271,12 +382,22 @@ class S {
 
   /// `Heavy Rains`
   String get heavy_rains {
-    return Intl.message('Heavy Rains', name: 'heavy_rains', desc: '', args: []);
+    return Intl.message(
+      'Heavy Rains',
+      name: 'heavy_rains',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Snow`
   String get snow {
-    return Intl.message('Snow', name: 'snow', desc: '', args: []);
+    return Intl.message(
+      'Snow',
+      name: 'snow',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Thunderstorm`
@@ -291,47 +412,92 @@ class S {
 
   /// `m/s`
   String get m_s {
-    return Intl.message('m/s', name: 'm_s', desc: '', args: []);
+    return Intl.message(
+      'm/s',
+      name: 'm_s',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `km/h`
   String get kph {
-    return Intl.message('km/h', name: 'kph', desc: '', args: []);
+    return Intl.message(
+      'km/h',
+      name: 'kph',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `mph`
   String get mph {
-    return Intl.message('mph', name: 'mph', desc: '', args: []);
+    return Intl.message(
+      'mph',
+      name: 'mph',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `mmHg`
   String get mmHg {
-    return Intl.message('mmHg', name: 'mmHg', desc: '', args: []);
+    return Intl.message(
+      'mmHg',
+      name: 'mmHg',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `hPa`
   String get hPa {
-    return Intl.message('hPa', name: 'hPa', desc: '', args: []);
+    return Intl.message(
+      'hPa',
+      name: 'hPa',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `km`
   String get km {
-    return Intl.message('km', name: 'km', desc: '', args: []);
+    return Intl.message(
+      'km',
+      name: 'km',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `mi`
   String get mi {
-    return Intl.message('mi', name: 'mi', desc: '', args: []);
+    return Intl.message(
+      'mi',
+      name: 'mi',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `mm`
   String get mm {
-    return Intl.message('mm', name: 'mm', desc: '', args: []);
+    return Intl.message(
+      'mm',
+      name: 'mm',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `inch`
   String get inch {
-    return Intl.message('inch', name: 'inch', desc: '', args: []);
+    return Intl.message(
+      'inch',
+      name: 'inch',
+      desc: '',
+      args: [],
+    );
   }
 }
 

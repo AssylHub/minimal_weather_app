@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app2/gen/assets.gen.dart';
 import 'package:weather_app2/src/core/localization/generated/l10n.dart';
 import 'package:weather_app2/src/features/weather/domain/entities/current_weather.dart';
+import 'package:weather_app2/src/features/weather/domain/entities/weather_variable.dart';
 
 class DescContainer extends StatefulWidget {
   const DescContainer({super.key, required this.currentWeather});
@@ -13,58 +15,82 @@ class DescContainer extends StatefulWidget {
 class _DescContainerState extends State<DescContainer> {
   @override
   Widget build(BuildContext context) {
-    final List<String> values = [
-      widget.currentWeather.dewPoint.toString(),
-      widget.currentWeather.feelsLikeTemp.toString(),
-      widget.currentWeather.visibility.toString(),
-      widget.currentWeather.windDirection.toString(),
-      widget.currentWeather.windSpeed.toString(),
-      widget.currentWeather.windGust.toString(),
-      widget.currentWeather.evapotranspiration.toString(),
-      widget.currentWeather.precipitation.toString(),
-      widget.currentWeather.rain.toString(),
-      widget.currentWeather.precipitationProbability.toString(),
-      widget.currentWeather.humidity.toString(),
-      widget.currentWeather.cloudCover.toString(),
-      widget.currentWeather.surfacePressure.toString(),
-      widget.currentWeather.uvIndex.toString(),
-      widget.currentWeather.radiation.toString(),
-    ];
-
-    final List<String> imagePaths = [
-      'assets/images/dew.png',
-      'assets/images/hot.png',
-      'assets/images/fog.png',
-      'assets/images/windsock.png',
-      'assets/images/wind.png',
-      'assets/images/windgusts.png',
-      'assets/images/evaporation.png',
-      'assets/images/rainfall.png',
-      'assets/images/water.png',
-      'assets/images/precipitation_probability.png',
-      'assets/images/humidity.png',
-      'assets/images/cloudy.png',
-      'assets/images/atmospheric.png',
-      'assets/images/uv.png',
-      'assets/images/shortwave_radiation.png',
-    ];
-
-    final List<String> imageNames = [
-      S.current.dewpoint,
-      S.current.feels,
-      S.current.visibility,
-      S.current.direction,
-      S.current.wind,
-      S.current.gust,
-      S.current.evapotranspiration,
-      S.current.precipitation,
-      S.current.rain,
-      S.current.precipitation_probability,
-      S.current.humidity,
-      S.current.cloudcover,
-      S.current.pressure,
-      S.current.uv_index,
-      S.current.shortwave_radiation,
+    final variables = [
+      WeatherVariable(
+        value: widget.currentWeather.dewPoint.toString(),
+        icon: Assets.images.dew,
+        label: S.current.dewpoint,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.feelsLikeTemp.toString(),
+        icon: Assets.images.hot,
+        label: S.current.feels,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.visibility.toString(),
+        icon: Assets.images.fog,
+        label: S.current.visibility,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.windDirection.toString(),
+        icon: Assets.images.windsock,
+        label: S.current.direction,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.windSpeed.toString(),
+        icon: Assets.images.wind,
+        label: S.current.wind,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.windGust.toString(),
+        icon: Assets.images.windgusts,
+        label: S.current.gust,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.evapotranspiration.toString(),
+        icon: Assets.images.evaporation,
+        label: S.current.evapotranspiration,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.precipitation.toString(),
+        icon: Assets.images.rainfall,
+        label: S.current.precipitation,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.rain.toString(),
+        icon: Assets.images.water,
+        label: S.current.rain,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.precipitationProbability.toString(),
+        icon: Assets.images.precipitationProbability,
+        label: S.current.precipitation_probability,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.humidity.toString(),
+        icon: Assets.images.humidity,
+        label: S.current.humidity,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.cloudCover.toString(),
+        icon: Assets.images.cloudy,
+        label: S.current.cloudcover,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.surfacePressure.toString(),
+        icon: Assets.images.atmospheric,
+        label: S.current.pressure,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.uvIndex.toString(),
+        icon: Assets.images.uv,
+        label: S.current.uv_index,
+      ),
+      WeatherVariable(
+        value: widget.currentWeather.radiation.toString(),
+        icon: Assets.images.shortwaveRadiation,
+        label: S.current.shortwave_radiation,
+      ),
     ];
 
     return Container(
@@ -84,21 +110,20 @@ class _DescContainerState extends State<DescContainer> {
               mainAxisSpacing: 4,
               childAspectRatio: 1.5,
             ),
-            itemCount: values.length,
+            itemCount: variables.length,
             itemBuilder: (context, index) {
-              return Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(imagePaths[index], width: 30),
-                    Text(values[index]),
-                    Text(
-                      imageNames[index],
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
+              final variable = variables[index];
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  variable.icon.image(width: 30),
+                  Text(variable.value),
+                  Text(
+                    variable.label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               );
             },
           ),

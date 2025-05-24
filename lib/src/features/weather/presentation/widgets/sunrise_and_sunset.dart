@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app2/gen/assets.gen.dart';
 import 'package:weather_app2/src/features/weather/domain/entities/current_weather.dart';
 
 class SunriseAndSunset extends StatelessWidget {
@@ -36,7 +37,7 @@ class SunriseAndSunset extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(child: Image.asset("assets/images/sunrise.png")),
+                Expanded(child: Assets.images.sunrise.image()),
               ],
             ),
           ),
@@ -59,7 +60,7 @@ class SunriseAndSunset extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(child: Image.asset("assets/images/sunset.png")),
+                Expanded(child: Assets.images.sunset.image()),
               ],
             ),
           ),
